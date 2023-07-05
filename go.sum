@@ -96,8 +96,8 @@ github.com/Nvveen/Gotty v0.0.0-20120604004816-cd527374f1e5/go.mod h1:lmUJ/7eu/Q8
 github.com/OneOfOne/xxhash v1.2.2 h1:KMrpdQIwFcEqXDklaen+P1axHaj9BSKzvpUUfnHldSE=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/OpenPeeDeeP/depguard v1.1.0/go.mod h1:JtAMzWkmFEzDPyAd+W0NHl1lvpQKTvT9jnRVsohBKpc=
-github.com/PikeEcosystem/tendermint v0.0.3 h1:G1KgYmJROIDZjw6L/NmnvWHvUHokfELUZusqCg4WHcc=
-github.com/PikeEcosystem/tendermint v0.0.3/go.mod h1:CbJoDnyxZsvob0iWqAElAuZhyYHcRw/ioLtQSrDzpYg=
+github.com/PikeEcosystem/tendermint v0.0.4 h1:14VJbcA95+V2+U40uZOYK0NSJvEH6Cr1KpAlQ+Nd6yU=
+github.com/PikeEcosystem/tendermint v0.0.4/go.mod h1:CbJoDnyxZsvob0iWqAElAuZhyYHcRw/ioLtQSrDzpYg=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=
 github.com/VictoriaMetrics/fastcache v1.12.1 h1:i0mICQuojGDL3KblA7wUNlY5lOK6a4bwt3uRKnkZU40=

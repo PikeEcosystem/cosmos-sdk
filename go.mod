@@ -4,7 +4,7 @@ module github.com/PikeEcosystem/cosmos-sdk
 
 require (
 	github.com/99designs/keyring v1.1.6
-	github.com/PikeEcosystem/tendermint v0.0.3
+	github.com/PikeEcosystem/tendermint v0.0.4
 	github.com/VictoriaMetrics/fastcache v1.12.1
 	github.com/armon/go-metrics v0.4.1
 	github.com/bgentry/speakeasy v0.1.0
