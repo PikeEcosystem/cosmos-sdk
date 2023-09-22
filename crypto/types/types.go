@@ -1,7 +1,7 @@
 package types
 
 import (
-	occrypto "github.com/PikeEcosystem/tendermint/crypto"
+	picrypto "github.com/PikeEcosystem/tendermint/crypto"
 	proto "github.com/gogo/protobuf/proto"
 )
 
@@ -39,5 +39,5 @@ type PrivKey interface {
 }
 
 type (
-	Address = occrypto.Address
+	Address = picrypto.Address
 )

@@ -258,13 +258,13 @@ func (d Description) EnsureLength() (Description, error) {
 // ABCIValidatorUpdate returns an abci.ValidatorUpdate from a staking validator type
 // with the full validator power
 func (v Validator) ABCIValidatorUpdate(r sdk.Int) abci.ValidatorUpdate {
-	ocProtoPk, err := v.OcConsPublicKey()
+	piprotoPk, err := v.OcConsPublicKey()
 	if err != nil {
 		panic(err)
 	}
 
 	return abci.ValidatorUpdate{
-		PubKey: ocProtoPk,
+		PubKey: piprotoPk,
 		Power:  v.ConsensusPower(r),
 	}
 }
@@ -272,13 +272,13 @@ func (v Validator) ABCIValidatorUpdate(r sdk.Int) abci.ValidatorUpdate {
 // ABCIValidatorUpdateZero returns an abci.ValidatorUpdate from a staking validator type
 // with zero power used for validator updates.
 func (v Validator) ABCIValidatorUpdateZero() abci.ValidatorUpdate {
-	ocprotoPk, err := v.OcConsPublicKey()
+	piprotoPk, err := v.OcConsPublicKey()
 	if err != nil {
 		panic(err)
 	}
 
 	return abci.ValidatorUpdate{
-		PubKey: ocprotoPk,
+		PubKey: piprotoPk,
 		Power:  0,
 	}
 }
@@ -486,7 +486,7 @@ func (v Validator) OcConsPublicKey() (tmprotocrypto.PublicKey, error) {
 		return tmprotocrypto.PublicKey{}, err
 	}
 
-	tmPk, err := cryptocodec.ToOcProtoPublicKey(pk)
+	tmPk, err := cryptocodec.TopiprotoPublicKey(pk)
 	if err != nil {
 		return tmprotocrypto.PublicKey{}, err
 	}

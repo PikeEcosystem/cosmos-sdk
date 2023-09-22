@@ -13,7 +13,7 @@ import (
 	"strings"
 
 	cfg "github.com/PikeEcosystem/tendermint/config"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/cosmos-sdk/client"
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
@@ -25,7 +25,7 @@ import (
 
 // GenAppStateFromConfig gets the genesis app state from the config
 func GenAppStateFromConfig(cdc codec.JSONCodec, txEncodingConfig client.TxEncodingConfig,
-	config *cfg.Config, initCfg types.InitConfig, genDoc octypes.GenesisDoc, genBalIterator types.GenesisBalancesIterator,
+	config *cfg.Config, initCfg types.InitConfig, genDoc pitypes.GenesisDoc, genBalIterator types.GenesisBalancesIterator,
 ) (appState json.RawMessage, err error) {
 	// process genesis transactions, else create default genesis.json
 	appGenTxs, persistentPeers, err := CollectTxs(
@@ -68,7 +68,7 @@ func GenAppStateFromConfig(cdc codec.JSONCodec, txEncodingConfig client.TxEncodi
 // CollectTxs processes and validates application's genesis Txs and returns
 // the list of appGenTxs, and persistent peers required to generate genesis.json.
 func CollectTxs(cdc codec.JSONCodec, txJSONDecoder sdk.TxDecoder, moniker, genTxsDir string,
-	genDoc octypes.GenesisDoc, genBalIterator types.GenesisBalancesIterator,
+	genDoc pitypes.GenesisDoc, genBalIterator types.GenesisBalancesIterator,
 ) (appGenTxs []sdk.Tx, persistentPeers string, err error) {
 	// prepare a map of all balances in genesis state to then validate
 	// against the validators addresses

@@ -4,11 +4,12 @@ import (
 	"context"
 	"time"
 
+	piproto "github.com/PikeEcosystem/tendermint/proto/tendermint/types"
 	"github.com/gogo/protobuf/proto"
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	ocbytes "github.com/PikeEcosystem/tendermint/libs/bytes"
+	pibytes "github.com/PikeEcosystem/tendermint/libs/bytes"
 	"github.com/PikeEcosystem/tendermint/libs/log"
 
 	"github.com/PikeEcosystem/cosmos-sdk/store/gaskv"
@@ -27,7 +28,8 @@ type Context struct {
 	ctx           context.Context
 	ms            MultiStore
 	header        tmproto.Header
-	headerHash    ocbytes.HexBytes
+	entropy 			piproto.Entropy
+	headerHash    pibytes.HexBytes
 	chainID       string
 	txBytes       []byte
 	logger        log.Logger
@@ -59,6 +61,7 @@ func (c Context) IsCheckTx() bool             { return c.checkTx }
 func (c Context) IsReCheckTx() bool           { return c.recheckTx }
 func (c Context) MinGasPrices() DecCoins      { return c.minGasPrice }
 func (c Context) EventManager() *EventManager { return c.eventManager }
+func (c Context) Proof() []byte								{ return c.entropy.Proof}
 
 // clone the header before returning
 func (c Context) BlockHeader() tmproto.Header {
@@ -67,7 +70,7 @@ func (c Context) BlockHeader() tmproto.Header {
 }
 
 // HeaderHash returns a copy of the header hash obtained during abci.RequestBeginBlock
-func (c Context) HeaderHash() ocbytes.HexBytes {
+func (c Context) HeaderHash() pibytes.HexBytes {
 	hash := make([]byte, len(c.headerHash))
 	copy(hash, c.headerHash)
 	return hash

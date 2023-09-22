@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 
 	ostos "github.com/PikeEcosystem/tendermint/libs/os"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 
@@ -82,7 +82,7 @@ $ %s gentx my-key-name 1000000stake --home=/path/to/home/dir --keyring-backend=o
 				}
 			}
 
-			genDoc, err := octypes.GenesisDocFromFile(config.GenesisFile())
+			genDoc, err := pitypes.GenesisDocFromFile(config.GenesisFile())
 			if err != nil {
 				return errors.Wrapf(err, "failed to read genesis doc file %s", config.GenesisFile())
 			}

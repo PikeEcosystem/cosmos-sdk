@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"path/filepath"
 
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 
@@ -36,7 +36,7 @@ func CollectGenTxsCmd(genBalIterator types.GenesisBalancesIterator, defaultNodeH
 				return errors.Wrap(err, "failed to initialize node validator files")
 			}
 
-			genDoc, err := octypes.GenesisDocFromFile(config.GenesisFile())
+			genDoc, err := pitypes.GenesisDocFromFile(config.GenesisFile())
 			if err != nil {
 				return errors.Wrap(err, "failed to read genesis doc from file")
 			}

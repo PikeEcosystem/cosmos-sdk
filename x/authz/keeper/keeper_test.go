@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/suite"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	octime "github.com/PikeEcosystem/tendermint/types/time"
+	pitime "github.com/PikeEcosystem/tendermint/types/time"
 
 	"github.com/PikeEcosystem/cosmos-sdk/baseapp"
 	"github.com/PikeEcosystem/cosmos-sdk/simapp"
@@ -30,7 +30,7 @@ type TestSuite struct {
 func (s *TestSuite) SetupTest() {
 	app := simapp.Setup(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
-	now := octime.Now()
+	now := pitime.Now()
 	ctx = ctx.WithBlockHeader(tmproto.Header{Time: now})
 	queryHelper := baseapp.NewQueryServerTestHelper(ctx, app.InterfaceRegistry())
 	authz.RegisterQueryServer(queryHelper, app.AuthzKeeper)

@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	ostos "github.com/PikeEcosystem/tendermint/libs/os"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
@@ -67,7 +67,7 @@ func SetGenesisStateInAppState(
 // for the application.
 //
 // NOTE: The pubkey input is this machines pubkey.
-func GenesisStateFromGenDoc(genDoc octypes.GenesisDoc) (genesisState map[string]json.RawMessage, err error) {
+func GenesisStateFromGenDoc(genDoc pitypes.GenesisDoc) (genesisState map[string]json.RawMessage, err error) {
 	if err = json.Unmarshal(genDoc.AppState, &genesisState); err != nil {
 		return genesisState, err
 	}
@@ -78,13 +78,13 @@ func GenesisStateFromGenDoc(genDoc octypes.GenesisDoc) (genesisState map[string]
 // for the application.
 //
 // NOTE: The pubkey input is this machines pubkey.
-func GenesisStateFromGenFile(genFile string) (genesisState map[string]json.RawMessage, genDoc *octypes.GenesisDoc, err error) {
+func GenesisStateFromGenFile(genFile string) (genesisState map[string]json.RawMessage, genDoc *pitypes.GenesisDoc, err error) {
 	if !ostos.FileExists(genFile) {
 		return genesisState, genDoc,
 			fmt.Errorf("%s does not exist, run `init` first", genFile)
 	}
 
-	genDoc, err = octypes.GenesisDocFromFile(genFile)
+	genDoc, err = pitypes.GenesisDocFromFile(genFile)
 	if err != nil {
 		return genesisState, genDoc, err
 	}

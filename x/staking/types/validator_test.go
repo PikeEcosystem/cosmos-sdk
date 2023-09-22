@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
@@ -291,7 +291,7 @@ func TestValidatorsSortTendermint(t *testing.T) {
 	// create expected tendermint validators by converting to tendermint then sorting
 	expectedVals, err := teststaking.ToOcValidators(valz, sdk.DefaultPowerReduction)
 	require.NoError(t, err)
-	sort.Sort(octypes.ValidatorsByVotingPower(expectedVals))
+	sort.Sort(pitypes.ValidatorsByVotingPower(expectedVals))
 
 	// sort in SDK and then convert to tendermint
 	sort.SliceStable(valz, func(i, j int) bool {
@@ -305,7 +305,7 @@ func TestValidatorsSortTendermint(t *testing.T) {
 
 func TestValidatorToTm(t *testing.T) {
 	vals := make(types.Validators, 10)
-	expected := make([]*octypes.Validator, 10)
+	expected := make([]*pitypes.Validator, 10)
 
 	for i := range vals {
 		pk := ed25519.GenPrivKey().PubKey()
@@ -315,7 +315,7 @@ func TestValidatorToTm(t *testing.T) {
 		vals[i] = val
 		tmPk, err := cryptocodec.ToOcPubKeyInterface(pk)
 		require.NoError(t, err)
-		expected[i] = octypes.NewValidator(tmPk, val.ConsensusPower(sdk.DefaultPowerReduction))
+		expected[i] = pitypes.NewValidator(tmPk, val.ConsensusPower(sdk.DefaultPowerReduction))
 	}
 	vs, err := teststaking.ToOcValidators(vals, sdk.DefaultPowerReduction)
 	require.NoError(t, err)

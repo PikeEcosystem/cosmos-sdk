@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	amino "github.com/tendermint/go-amino"
 
 	"github.com/PikeEcosystem/cosmos-sdk/codec/types"
@@ -30,8 +30,8 @@ func NewLegacyAmino() *LegacyAmino {
 // RegisterEvidences registers Tendermint evidence types with the provided Amino
 // codec.
 func RegisterEvidences(cdc *LegacyAmino) {
-	cdc.Amino.RegisterInterface((*octypes.Evidence)(nil), nil)
-	cdc.Amino.RegisterConcrete(&octypes.DuplicateVoteEvidence{}, "tendermint/DuplicateVoteEvidence", nil)
+	cdc.Amino.RegisterInterface((*pitypes.Evidence)(nil), nil)
+	cdc.Amino.RegisterConcrete(&pitypes.DuplicateVoteEvidence{}, "tendermint/DuplicateVoteEvidence", nil)
 }
 
 // MarshalJSONIndent provides a utility for indented JSON encoding of an object

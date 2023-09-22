@@ -8,7 +8,7 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
 	cdctypes "github.com/PikeEcosystem/cosmos-sdk/codec/types"
@@ -57,7 +57,7 @@ func TestCollectTxsHandlesDirectories(t *testing.T) {
 	srvCtx := server.NewDefaultContext()
 	_ = srvCtx
 	cdc := codec.NewProtoCodec(cdctypes.NewInterfaceRegistry())
-	gdoc := octypes.GenesisDoc{AppState: []byte("{}")}
+	gdoc := pitypes.GenesisDoc{AppState: []byte("{}")}
 	balItr := new(doNothingIterator)
 
 	dnc := &doNothingUnmarshalJSON{cdc}

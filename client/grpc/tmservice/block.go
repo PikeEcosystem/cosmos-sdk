@@ -3,7 +3,7 @@ package tmservice
 import (
 	"context"
 
-	ocproto "github.com/PikeEcosystem/tendermint/proto/tendermint/types"
+	piproto "github.com/PikeEcosystem/tendermint/proto/tendermint/types"
 	ctypes "github.com/PikeEcosystem/tendermint/rpc/core/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
@@ -40,7 +40,7 @@ func getBlockResultsByHeight(clientCtx client.Context, height *int64) (*ctypes.R
 	return node.BlockResults(context.Background(), height)
 }
 
-func GetProtoBlock(ctx context.Context, clientCtx client.Context, height *int64) (tmproto.BlockID, *ocproto.Block, error) {
+func GetProtoBlock(ctx context.Context, clientCtx client.Context, height *int64) (tmproto.BlockID, *piproto.Block, error) {
 	block, err := getBlock(ctx, clientCtx, height)
 	if err != nil {
 		return tmproto.BlockID{}, nil, err

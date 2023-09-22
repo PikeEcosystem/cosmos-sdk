@@ -7,7 +7,7 @@ import (
 	"os"
 
 	ostjson "github.com/PikeEcosystem/tendermint/libs/json"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/spf13/cobra"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
@@ -72,7 +72,7 @@ func ExportCmd(appExporter types.AppExporter, defaultNodeHome string) *cobra.Com
 				return fmt.Errorf("error exporting state: %v", err)
 			}
 
-			doc, err := octypes.GenesisDocFromFile(serverCtx.Config.GenesisFile())
+			doc, err := pitypes.GenesisDocFromFile(serverCtx.Config.GenesisFile())
 			if err != nil {
 				return err
 			}

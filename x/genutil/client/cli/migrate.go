@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	ocjson "github.com/PikeEcosystem/tendermint/libs/json"
+	pijson "github.com/PikeEcosystem/tendermint/libs/json"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 
@@ -112,7 +112,7 @@ $ %s migrate v0.43 /path/to/genesis.json --chain-id=test-chain-1 --genesis-time=
 				genDoc.ChainID = chainID
 			}
 
-			bz, err := ocjson.Marshal(genDoc)
+			bz, err := pijson.Marshal(genDoc)
 			if err != nil {
 				return errors.Wrap(err, "failed to marshal genesis doc")
 			}

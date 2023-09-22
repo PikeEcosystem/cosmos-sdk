@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	cryptocodec "github.com/PikeEcosystem/cosmos-sdk/crypto/codec"
@@ -193,7 +193,7 @@ func ExportGenesis(ctx sdk.Context, keeper keeper.Keeper) *types.GenesisState {
 }
 
 // WriteValidators returns a slice of bonded genesis validators.
-func WriteValidators(ctx sdk.Context, keeper keeper.Keeper) (vals []octypes.GenesisValidator, err error) {
+func WriteValidators(ctx sdk.Context, keeper keeper.Keeper) (vals []pitypes.GenesisValidator, err error) {
 	keeper.IterateLastValidators(ctx, func(_ int64, validator types.ValidatorI) (stop bool) {
 		pk, err := validator.ConsPubKey()
 		if err != nil {
@@ -204,7 +204,7 @@ func WriteValidators(ctx sdk.Context, keeper keeper.Keeper) (vals []octypes.Gene
 			return true
 		}
 
-		vals = append(vals, octypes.GenesisValidator{
+		vals = append(vals, pitypes.GenesisValidator{
 			Address: sdk.ConsAddress(tmPk.Address()).Bytes(),
 			PubKey:  tmPk,
 			Power:   validator.GetConsensusPower(keeper.PowerReduction(ctx)),

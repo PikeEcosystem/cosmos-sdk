@@ -3,7 +3,7 @@ package multisig
 import (
 	fmt "fmt"
 
-	occrypto "github.com/PikeEcosystem/tendermint/crypto"
+	picrypto "github.com/PikeEcosystem/tendermint/crypto"
 
 	"github.com/PikeEcosystem/cosmos-sdk/codec/types"
 	cryptotypes "github.com/PikeEcosystem/cosmos-sdk/crypto/types"
@@ -36,7 +36,7 @@ func NewLegacyAminoPubKey(threshold int, pubKeys []cryptotypes.PubKey) *LegacyAm
 
 // Address implements cryptotypes.PubKey Address method
 func (m *LegacyAminoPubKey) Address() cryptotypes.Address {
-	return occrypto.AddressHash(m.Bytes())
+	return picrypto.AddressHash(m.Bytes())
 }
 
 // Bytes returns the proto encoded version of the LegacyAminoPubKey

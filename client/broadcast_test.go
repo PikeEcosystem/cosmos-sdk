@@ -9,7 +9,7 @@ import (
 	"github.com/PikeEcosystem/tendermint/mempool"
 	"github.com/PikeEcosystem/tendermint/rpc/client/mock"
 	ctypes "github.com/PikeEcosystem/tendermint/rpc/core/types"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/stretchr/testify/require"
 
 	"github.com/PikeEcosystem/cosmos-sdk/client/flags"
@@ -21,15 +21,15 @@ type MockClient struct {
 	err error
 }
 
-func (c MockClient) BroadcastTxCommit(ctx context.Context, tx octypes.Tx) (*ctypes.ResultBroadcastTxCommit, error) {
+func (c MockClient) BroadcastTxCommit(ctx context.Context, tx pitypes.Tx) (*ctypes.ResultBroadcastTxCommit, error) {
 	return nil, c.err
 }
 
-func (c MockClient) BroadcastTxAsync(ctx context.Context, tx octypes.Tx) (*ctypes.ResultBroadcastTx, error) {
+func (c MockClient) BroadcastTxAsync(ctx context.Context, tx pitypes.Tx) (*ctypes.ResultBroadcastTx, error) {
 	return nil, c.err
 }
 
-func (c MockClient) BroadcastTxSync(ctx context.Context, tx octypes.Tx) (*ctypes.ResultBroadcastTx, error) {
+func (c MockClient) BroadcastTxSync(ctx context.Context, tx pitypes.Tx) (*ctypes.ResultBroadcastTx, error) {
 	return nil, c.err
 }
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/spf13/cobra"
 
 	"github.com/PikeEcosystem/cosmos-sdk/client"
@@ -221,7 +221,7 @@ $ %s query txs --%s 'message.sender=link1...&message.action=withdraw_delegator_r
 				}
 
 				tokens := strings.Split(event, "=")
-				if tokens[0] == octypes.TxHeightKey {
+				if tokens[0] == pitypes.TxHeightKey {
 					event = fmt.Sprintf("%s=%s", tokens[0], tokens[1])
 				} else {
 					event = fmt.Sprintf("%s='%s'", tokens[0], tokens[1])

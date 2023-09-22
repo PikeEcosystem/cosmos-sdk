@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/spf13/cobra"
 
 	"github.com/PikeEcosystem/cosmos-sdk/client"
@@ -101,7 +101,7 @@ func (rvo ResultValidatorsOutput) String() string {
 	return b.String()
 }
 
-func validatorOutput(validator *octypes.Validator) (ValidatorOutput, error) {
+func validatorOutput(validator *pitypes.Validator) (ValidatorOutput, error) {
 	pk, err := cryptocodec.FromOcPubKeyInterface(validator.PubKey)
 	if err != nil {
 		return ValidatorOutput{}, err

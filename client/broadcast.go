@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc/status"
 
 	"github.com/PikeEcosystem/tendermint/mempool"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/cosmos-sdk/client/flags"
 	sdk "github.com/PikeEcosystem/cosmos-sdk/types"
@@ -47,7 +47,7 @@ func (ctx Context) BroadcastTx(txBytes []byte) (res *sdk.TxResponse, err error) 
 // TODO: Avoid brittle string matching in favor of error matching. This requires
 // a change to Tendermint's RPCError type to allow retrieval or matching against
 // a concrete error type.
-func CheckTendermintError(err error, tx octypes.Tx) *sdk.TxResponse {
+func CheckTendermintError(err error, tx pitypes.Tx) *sdk.TxResponse {
 	if err == nil {
 		return nil
 	}

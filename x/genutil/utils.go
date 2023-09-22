@@ -11,7 +11,7 @@ import (
 	ostos "github.com/PikeEcosystem/tendermint/libs/os"
 	"github.com/PikeEcosystem/tendermint/p2p"
 	"github.com/PikeEcosystem/tendermint/privval"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	"github.com/cosmos/go-bip39"
 
 	cryptocodec "github.com/PikeEcosystem/cosmos-sdk/crypto/codec"
@@ -20,7 +20,7 @@ import (
 
 // ExportGenesisFile creates and writes the genesis configuration to disk. An
 // error is returned if building or writing the configuration to file fails.
-func ExportGenesisFile(genDoc *octypes.GenesisDoc, genFile string) error {
+func ExportGenesisFile(genDoc *pitypes.GenesisDoc, genFile string) error {
 	if err := genDoc.ValidateAndComplete(); err != nil {
 		return err
 	}
@@ -31,10 +31,10 @@ func ExportGenesisFile(genDoc *octypes.GenesisDoc, genFile string) error {
 // ExportGenesisFileWithTime creates and writes the genesis configuration to disk.
 // An error is returned if building or writing the configuration to file fails.
 func ExportGenesisFileWithTime(
-	genFile, chainID string, validators []octypes.GenesisValidator,
+	genFile, chainID string, validators []pitypes.GenesisValidator,
 	appState json.RawMessage, genTime time.Time,
 ) error {
-	genDoc := octypes.GenesisDoc{
+	genDoc := pitypes.GenesisDoc{
 		GenesisTime: genTime,
 		ChainID:     chainID,
 		Validators:  validators,

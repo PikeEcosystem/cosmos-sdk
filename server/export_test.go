@@ -17,7 +17,7 @@ import (
 	tmabci "github.com/PikeEcosystem/tendermint/abci/types"
 	ostjson "github.com/PikeEcosystem/tendermint/libs/json"
 	"github.com/PikeEcosystem/tendermint/libs/log"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 	dbm "github.com/tendermint/tm-db"
 
@@ -41,7 +41,7 @@ func TestExportCmd_ConsensusParams(t *testing.T) {
 	cmd.SetArgs([]string{fmt.Sprintf("--%s=%s", flags.FlagHome, tempDir)})
 	require.NoError(t, cmd.ExecuteContext(ctx))
 
-	var exportedGenDoc octypes.GenesisDoc
+	var exportedGenDoc pitypes.GenesisDoc
 	err := ostjson.Unmarshal(output.Bytes(), &exportedGenDoc)
 	if err != nil {
 		t.Fatalf("error unmarshaling exported genesis doc: %s", err)
@@ -111,7 +111,7 @@ func TestExportCmd_Height(t *testing.T) {
 			cmd.SetArgs(args)
 			require.NoError(t, cmd.ExecuteContext(ctx))
 
-			var exportedGenDoc octypes.GenesisDoc
+			var exportedGenDoc pitypes.GenesisDoc
 			err := ostjson.Unmarshal(output.Bytes(), &exportedGenDoc)
 			if err != nil {
 				t.Fatalf("error unmarshaling exported genesis doc: %s", err)
@@ -122,7 +122,7 @@ func TestExportCmd_Height(t *testing.T) {
 	}
 }
 
-func setupApp(t *testing.T, tempDir string) (*simapp.SimApp, context.Context, *octypes.GenesisDoc, *cobra.Command) {
+func setupApp(t *testing.T, tempDir string) (*simapp.SimApp, context.Context, *pitypes.GenesisDoc, *cobra.Command) {
 	if err := createConfigFolder(tempDir); err != nil {
 		t.Fatalf("error creating config folder: %s", err)
 	}
@@ -177,7 +177,7 @@ func createConfigFolder(dir string) error {
 	return os.Mkdir(path.Join(dir, "config"), 0o700)
 }
 
-func newDefaultGenesisDoc(cdc codec.Codec) *octypes.GenesisDoc {
+func newDefaultGenesisDoc(cdc codec.Codec) *pitypes.GenesisDoc {
 	genesisState := simapp.NewDefaultGenesisState(cdc)
 
 	stateBytes, err := json.MarshalIndent(genesisState, "", "  ")
@@ -185,7 +185,7 @@ func newDefaultGenesisDoc(cdc codec.Codec) *octypes.GenesisDoc {
 		panic(err)
 	}
 
-	genDoc := &octypes.GenesisDoc{}
+	genDoc := &pitypes.GenesisDoc{}
 	genDoc.ChainID = "theChainId"
 	genDoc.Validators = nil
 	genDoc.AppState = stateBytes
@@ -193,7 +193,7 @@ func newDefaultGenesisDoc(cdc codec.Codec) *octypes.GenesisDoc {
 	return genDoc
 }
 
-func saveGenesisFile(genDoc *octypes.GenesisDoc, dir string) error {
+func saveGenesisFile(genDoc *pitypes.GenesisDoc, dir string) error {
 	err := genutil.ExportGenesisFile(genDoc, dir)
 	if err != nil {
 		return errors.Wrap(err, "error creating file")

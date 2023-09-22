@@ -13,7 +13,7 @@ import (
 
 	"github.com/PikeEcosystem/tendermint/crypto"
 	ostcoretypes "github.com/PikeEcosystem/tendermint/rpc/core/types"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	sdkclient "github.com/PikeEcosystem/cosmos-sdk/client"
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
@@ -69,9 +69,9 @@ type ToRosettaConverter interface {
 	// SigningComponents returns rosetta's components required to build a signable transaction
 	SigningComponents(tx authsigning.Tx, metadata *ConstructionMetadata, rosPubKeys []*rosettatypes.PublicKey) (txBytes []byte, payloadsToSign []*rosettatypes.SigningPayload, err error)
 	// Tx converts a tendermint transaction and tx result if provided to a rosetta tx
-	Tx(rawTx octypes.Tx, txResult *abci.ResponseDeliverTx) (*rosettatypes.Transaction, error)
+	Tx(rawTx pitypes.Tx, txResult *abci.ResponseDeliverTx) (*rosettatypes.Transaction, error)
 	// TxIdentifiers converts a tendermint tx to transaction identifiers
-	TxIdentifiers(txs []octypes.Tx) []*rosettatypes.TransactionIdentifier
+	TxIdentifiers(txs []pitypes.Tx) []*rosettatypes.TransactionIdentifier
 	// BalanceOps converts events to balance operations
 	BalanceOps(status string, events []abci.Event) []*rosettatypes.Operation
 	// SyncStatus converts a tendermint status to sync status
@@ -260,7 +260,7 @@ func (c converter) Ops(status string, msg sdk.Msg) ([]*rosettatypes.Operation, e
 }
 
 // Tx converts a tendermint raw transaction and its result (if provided) to a rosetta transaction
-func (c converter) Tx(rawTx octypes.Tx, txResult *abci.ResponseDeliverTx) (*rosettatypes.Transaction, error) {
+func (c converter) Tx(rawTx pitypes.Tx, txResult *abci.ResponseDeliverTx) (*rosettatypes.Transaction, error) {
 	// decode tx
 	tx, err := c.txDecode(rawTx)
 	if err != nil {
@@ -517,7 +517,7 @@ func (c converter) SyncStatus(status *ostcoretypes.ResultStatus) *rosettatypes.S
 }
 
 // TxIdentifiers converts a tendermint raw transactions into an array of rosetta tx identifiers
-func (c converter) TxIdentifiers(txs []octypes.Tx) []*rosettatypes.TransactionIdentifier {
+func (c converter) TxIdentifiers(txs []pitypes.Tx) []*rosettatypes.TransactionIdentifier {
 	converted := make([]*rosettatypes.TransactionIdentifier, len(txs))
 	for i, tx := range txs {
 		converted[i] = &rosettatypes.TransactionIdentifier{Hash: fmt.Sprintf("%X", tx.Hash())}

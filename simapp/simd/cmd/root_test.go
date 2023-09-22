@@ -9,7 +9,7 @@ import (
 	dbm "github.com/tendermint/tm-db"
 
 	"github.com/PikeEcosystem/tendermint/libs/log"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	"github.com/PikeEcosystem/cosmos-sdk/client/flags"
@@ -45,7 +45,7 @@ func TestAppExport(t *testing.T) {
 	genesisState := simapp.NewDefaultGenesisState(encodingConfig.Marshaler)
 	stateBytes, err := json.MarshalIndent(genesisState, "", "  ")
 	require.NoError(t, err)
-	genDoc := &octypes.GenesisDoc{}
+	genDoc := &pitypes.GenesisDoc{}
 	genDoc.ChainID = "theChainId"
 	genDoc.Validators = nil
 	genDoc.AppState = stateBytes

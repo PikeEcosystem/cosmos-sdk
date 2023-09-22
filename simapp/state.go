@@ -9,7 +9,7 @@ import (
 	"time"
 
 	ostjson "github.com/PikeEcosystem/tendermint/libs/json"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	"github.com/PikeEcosystem/cosmos-sdk/codec"
 	"github.com/PikeEcosystem/cosmos-sdk/crypto/keys/secp256k1"
@@ -182,13 +182,13 @@ func AppStateRandomizedFn(
 
 // AppStateFromGenesisFileFn util function to generate the genesis AppState
 // from a genesis.json file.
-func AppStateFromGenesisFileFn(r io.Reader, cdc codec.JSONCodec, genesisFile string) (octypes.GenesisDoc, []simtypes.Account) {
+func AppStateFromGenesisFileFn(r io.Reader, cdc codec.JSONCodec, genesisFile string) (pitypes.GenesisDoc, []simtypes.Account) {
 	bytes, err := os.ReadFile(genesisFile)
 	if err != nil {
 		panic(err)
 	}
 
-	var genesis octypes.GenesisDoc
+	var genesis pitypes.GenesisDoc
 	// NOTE: Tendermint uses a custom JSON decoder for GenesisDoc
 	err = ostjson.Unmarshal(bytes, &genesis)
 	if err != nil {

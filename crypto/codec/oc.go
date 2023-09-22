@@ -3,7 +3,7 @@ package codec
 import (
 	tmprotocrypto "github.com/tendermint/tendermint/proto/tendermint/crypto"
 
-	occrypto "github.com/PikeEcosystem/tendermint/crypto"
+	picrypto "github.com/PikeEcosystem/tendermint/crypto"
 	"github.com/PikeEcosystem/tendermint/crypto/encoding"
 
 	"github.com/PikeEcosystem/cosmos-sdk/crypto/keys/ed25519"
@@ -12,8 +12,8 @@ import (
 	sdkerrors "github.com/PikeEcosystem/cosmos-sdk/types/errors"
 )
 
-// FromOcProtoPublicKey converts a OC's tmprotocrypto.PublicKey into our own PubKey.
-func FromOcProtoPublicKey(protoPk tmprotocrypto.PublicKey) (cryptotypes.PubKey, error) {
+// FrompiprotoPublicKey converts a OC's tmprotocrypto.PublicKey into our own PubKey.
+func FrompiprotoPublicKey(protoPk tmprotocrypto.PublicKey) (cryptotypes.PubKey, error) {
 	switch protoPk := protoPk.Sum.(type) {
 	case *tmprotocrypto.PublicKey_Ed25519:
 		return &ed25519.PubKey{
@@ -28,8 +28,8 @@ func FromOcProtoPublicKey(protoPk tmprotocrypto.PublicKey) (cryptotypes.PubKey, 
 	}
 }
 
-// ToOcProtoPublicKey converts our own PubKey to OC's tmprotocrypto.PublicKey.
-func ToOcProtoPublicKey(pk cryptotypes.PubKey) (tmprotocrypto.PublicKey, error) {
+// TopiprotoPublicKey converts our own PubKey to OC's tmprotocrypto.PublicKey.
+func TopiprotoPublicKey(pk cryptotypes.PubKey) (tmprotocrypto.PublicKey, error) {
 	switch pk := pk.(type) {
 	case *ed25519.PubKey:
 		return tmprotocrypto.PublicKey{
@@ -48,22 +48,22 @@ func ToOcProtoPublicKey(pk cryptotypes.PubKey) (tmprotocrypto.PublicKey, error) 
 	}
 }
 
-// FromOcPubKeyInterface converts OC's occrypto.PubKey to our own PubKey.
-func FromOcPubKeyInterface(tmPk occrypto.PubKey) (cryptotypes.PubKey, error) {
-	ocProtoPk, err := encoding.PubKeyToProto(tmPk)
+// FromOcPubKeyInterface converts OC's picrypto.PubKey to our own PubKey.
+func FromOcPubKeyInterface(tmPk picrypto.PubKey) (cryptotypes.PubKey, error) {
+	piprotoPk, err := encoding.PubKeyToProto(tmPk)
 	if err != nil {
 		return nil, err
 	}
 
-	return FromOcProtoPublicKey(ocProtoPk)
+	return FrompiprotoPublicKey(piprotoPk)
 }
 
-// ToOcPubKeyInterface converts our own PubKey to OC's occrypto.PubKey.
-func ToOcPubKeyInterface(pk cryptotypes.PubKey) (occrypto.PubKey, error) {
-	ocProtoPk, err := ToOcProtoPublicKey(pk)
+// ToOcPubKeyInterface converts our own PubKey to OC's picrypto.PubKey.
+func ToOcPubKeyInterface(pk cryptotypes.PubKey) (picrypto.PubKey, error) {
+	piprotoPk, err := TopiprotoPublicKey(pk)
 	if err != nil {
 		return nil, err
 	}
 
-	return encoding.PubKeyFromProto(&ocProtoPk)
+	return encoding.PubKeyFromProto(&piprotoPk)
 }

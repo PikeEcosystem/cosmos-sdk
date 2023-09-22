@@ -20,7 +20,7 @@ import (
 
 	tmabci "github.com/PikeEcosystem/tendermint/abci/types"
 	"github.com/PikeEcosystem/tendermint/libs/log"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 
 	bam "github.com/PikeEcosystem/cosmos-sdk/baseapp"
 	"github.com/PikeEcosystem/cosmos-sdk/client"
@@ -49,7 +49,7 @@ var DefaultConsensusParams = &abci.ConsensusParams{
 	},
 	Validator: &tmproto.ValidatorParams{
 		PubKeyTypes: []string{
-			octypes.ABCIPubKeyTypeEd25519,
+			pitypes.ABCIPubKeyTypeEd25519,
 		},
 	},
 }
@@ -98,7 +98,7 @@ func Setup(isCheckTx bool) *SimApp {
 // that also act as delegators. For simplicity, each validator is bonded with a delegation
 // of one consensus engine unit (10^6) in the default token of the simapp from first genesis
 // account. A Nop logger is set in SimApp.
-//func SetupWithGenesisValSet(t *testing.T, valSet *octypes.ValidatorSet, genAccs []authtypes.GenesisAccount, balances ...banktypes.Balance) *SimApp {
+//func SetupWithGenesisValSet(t *testing.T, valSet *pitypes.ValidatorSet, genAccs []authtypes.GenesisAccount, balances ...banktypes.Balance) *SimApp {
 //	app, genesisState := setup(true, 5)
 //	// set genesis accounts
 //	authGenesis := authtypes.NewGenesisState(authtypes.DefaultParams(), genAccs)

@@ -11,7 +11,7 @@ import (
 
 	tmabci "github.com/PikeEcosystem/tendermint/abci/types"
 	"github.com/PikeEcosystem/tendermint/libs/log"
-	octypes "github.com/PikeEcosystem/tendermint/types"
+	pitypes "github.com/PikeEcosystem/tendermint/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	"github.com/PikeEcosystem/cosmos-sdk/client"
@@ -82,7 +82,7 @@ type (
 		// AppState is the application state as JSON.
 		AppState json.RawMessage
 		// Validators is the exported validator set.
-		Validators []octypes.GenesisValidator
+		Validators []pitypes.GenesisValidator
 		// Height is the app's latest block height.
 		Height int64
 		// ConsensusParams are the exported consensus params for ABCI.
